@@ -3,7 +3,7 @@ const TwitchHelper = {
 
   },
   async getMostActiveStreams() {
-    const response = await this.fetchGet('https://api.twitch.tv/helix/streams/?first=100');
+    const response = await this.fetchGet('https://api.twitch.tv/helix/streams/?first=100&language=en');
     return response;
   },
   async getUserLogin(id) {
