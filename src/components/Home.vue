@@ -17,7 +17,7 @@
                 </ul>
             </div>
         </nav>
-        <h3 style="text-align:center;color:white;margin-top:20px;">WELCOME TO TWITCHFLIX U CUCKS</h3>
+        <h3 style="text-align:center;color:white;margin-top:20px;">WELCOME TO TWITCHFLIX</h3>
         <Embed v-if="isLoaded"/>
         <h4 style="text-align:center;color:white;">Still in development tho.</h4>
         <p style="text-align:center;color:white;">Built in VueJS</p>
