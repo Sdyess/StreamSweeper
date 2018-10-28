@@ -15,10 +15,9 @@ const state = {
 
 const mutations = {
   addStream(state, listStream) {
-    console.log(listStream);
-    for(var key in listStream.data) {
-      state.streams.push(listStream.data[key].user_id);
-    }
+    listStream.data.forEach((stream) => {
+      state.streams.push(stream.user_id);
+    });
     state.streamsLoaded = true;
   },
   setStreamUser(state, login) {
@@ -56,4 +55,4 @@ export default new Vuex.Store({
   mutations,
   getters,
   actions,
-})
+});

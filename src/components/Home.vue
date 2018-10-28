@@ -13,7 +13,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
-                    </li>     
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Top 100 Streams</a>
+                    </li>
                 </ul>
             </div>
         </nav>
