@@ -6,31 +6,27 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 import TwitchHelper from '../js/TwitchHelper';
 
 export default {
   name: 'Embed',
   methods: {
-    ...mapActions([
-      'setSelectedStream',
+    ...mapMutations([
+      'selectStream',
     ]),
     loadTwitch() {
+      console.log('Loading: ', this.$store.state.selectedStream);
       new Twitch.Embed('twitch-embed', {
         width: '100%',
         height: 600,
         channel: this.$store.state.selectedStream,
       });
     },
-    getRandomStreamNum() {
+    getRandomStream() {
       const streams = this.$store.state.streams;
-      return streams[Math.floor(Math.random() * streams.length)];
+      return streams[Math.floor(Math.random() * streams.length)].channel.display_name;
     },
-  },
-  data() {
-    return {
-      stream: 0,
-    }
   },
   computed: {
     isLoaded2() {
@@ -38,12 +34,11 @@ export default {
     },
   },
   created() {
-    this.setSelectedStream(this.getRandomStreamNum());
+    this.$store.commit('selectStream', this.getRandomStream());
   },
   mounted() {
-    TwitchHelper.getGameInfo();
-  },
-  updated() {
+    const test = TwitchHelper.getGameInfo();
+    console.log(test);
     this.$nextTick(() => {
       this.loadTwitch();
     });

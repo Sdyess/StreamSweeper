@@ -1,26 +1,19 @@
+const KrakenAPIServiceUrl = 'https://api.twitch.tv/kraken/';
+const HelixAPIServiceUrl = 'https://api.twitch.tv/helix/';
+
 const TwitchHelper = {
   getRandomTwitchUser() {
 
   },
   async getMostActiveStreams() {
-    const response = await this.fetchGet('https://api.twitch.tv/helix/streams/?first=100&language=en');
+    const response = await this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100`);
     return response;
   },
-  async getUserLogin(id) {
-    console.log(id);
-    const response = await this.fetchGet(`https://api.twitch.tv/helix/users?id=${id}`);
+  async getGameInfo(gameID) {
+    const response = await this.fetchGet(`${HelixAPIServiceUrl}games?id=${gameID}`);
     return response;
   },
-  getGameInfo() {
-    fetch('https://api.twitch.tv/helix/games?id=493057', {
-      headers: {
-        'Client-ID': '7i0jdj0u0pbpr5h7x6p622vwm9ih4q',
-      },
-    })
-      .then(response => response.json())
-      .then(myJson => console.log(myJson));
-  },
-  fetchGet(url) {
+  async fetchGet(url) {
     const myHeaders = new Headers();
     myHeaders.append('Client-ID', '7i0jdj0u0pbpr5h7x6p622vwm9ih4q');
 

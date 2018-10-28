@@ -15,17 +15,13 @@ const state = {
 
 const mutations = {
   addStream(state, listStream) {
-    listStream.data.forEach((stream) => {
-      stream.thumbnail_url = stream.thumbnail_url.replace('{width}', '300');
-      stream.thumbnail_url = stream.thumbnail_url.replace('{height}', '200');
-      console.log(stream.thumbnail_url);
-      state.streams.push(stream);
-    });
+    state.streams = listStream.streams;
     state.streamsLoaded = true;
+    console.log(state.streams);
   },
-  setStreamUser(state, login) {
-    console.log(login);
-    state.selectedStream = login.data[0].display_name;
+  selectStream(state, displayName) {
+    console.log(displayName);
+    state.selectedStream = displayName;
     state.streamSelectedBool = true;
   },
 };
@@ -33,10 +29,6 @@ const mutations = {
 const actions = {
   async setTopStreams(context) {
     context.commit('addStream', await TwitchHelper.getMostActiveStreams());
-    return Promise.resolve();
-  },
-  async setSelectedStream(context, id) {
-    context.commit('setStreamUser', await TwitchHelper.getUserLogin(id));
     return Promise.resolve();
   },
 };

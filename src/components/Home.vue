@@ -15,7 +15,7 @@
                         <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/Top100">Top 100 Streams</router-link>
+                        <router-link to="/Top">Top 100 Streams</router-link>
                     </li>
                     
                 </ul>

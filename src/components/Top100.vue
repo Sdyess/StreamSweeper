@@ -21,15 +21,23 @@
                 </ul>
             </div>
         </nav>
-        <img v-for="stream of streams" :key="stream.id" :src="stream.thumbnail_url" style="padding:20px;">
+        <top-stream v-for="stream in streams" :key="stream.id" :streamData="stream"></top-stream>
+        
     </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 import TwitchHelper from '../js/TwitchHelper';
+import TopStream from  './TopStream';
+
 
 export default {
   name: 'Top100',
+  components: { TopStream },
+  ...mapActions([
+      'setTopStreams',
+    ]),
   data() {
     return {
       streams: [],
@@ -42,7 +50,11 @@ export default {
       return newThumb;
   },
   created() {
+      if (this.$store.state.streams.length === 0) {
+          this.setTopStreams();
+      }
       this.streams = this.$store.state.streams;
+      console.log('Hello');
       console.log(this.streams);
   },
 };
