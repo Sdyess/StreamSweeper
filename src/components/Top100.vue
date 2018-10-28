@@ -21,23 +21,29 @@
                 </ul>
             </div>
         </nav>
-        <h3 style="text-align:center;color:white;margin-top:20px;">WELCOME TO TWITCHFLIX</h3>
-        <Embed v-if="isLoaded"/>
-        <h4 style="text-align:center;color:white;">Still in development tho.</h4>
-        <p style="text-align:center;color:white;">Built in VueJS</p>
+        <img v-for="stream of streams" :key="stream.id" :src="stream.thumbnail_url" style="padding:20px;">
     </div>
 </template>
 
 <script>
-import Embed from './Embed';
+import TwitchHelper from '../js/TwitchHelper';
 
 export default {
-  name: 'Home',
-  components: { Embed },
-  computed: {
-    isLoaded() {
-      return this.$store.state.streamsLoaded;
-    },
+  name: 'Top100',
+  data() {
+    return {
+      streams: [],
+    }
+  },
+  convertThumbUrl(thumbUrl) {
+      let newThumb = thumbUrl;
+      newThumb.replace('{Width}', '200');
+      newThumb.replace('{Height}', '100');
+      return newThumb;
+  },
+  created() {
+      this.streams = this.$store.state.streams;
+      console.log(this.streams);
   },
 };
 </script>

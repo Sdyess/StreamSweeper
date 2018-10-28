@@ -16,7 +16,10 @@ const state = {
 const mutations = {
   addStream(state, listStream) {
     listStream.data.forEach((stream) => {
-      state.streams.push(stream.user_id);
+      stream.thumbnail_url = stream.thumbnail_url.replace('{width}', '300');
+      stream.thumbnail_url = stream.thumbnail_url.replace('{height}', '200');
+      console.log(stream.thumbnail_url);
+      state.streams.push(stream);
     });
     state.streamsLoaded = true;
   },
