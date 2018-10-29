@@ -1,14 +1,21 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="container-fluid">
+      <Navbar/>
+      <router-view/>
+      <Footer/>
+    </div>
   </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 export default {
   name: 'App',
+  components: { Navbar, Footer },
   methods: {
     ...mapActions([
       'setTopStreams',
