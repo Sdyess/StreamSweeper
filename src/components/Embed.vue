@@ -37,8 +37,6 @@ export default {
     this.$store.commit('selectStream', this.getRandomStream());
   },
   mounted() {
-    const test = TwitchHelper.getGameInfo();
-    console.log(test);
     this.$nextTick(() => {
       this.loadTwitch();
     });

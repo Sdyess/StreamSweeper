@@ -1,65 +1,62 @@
 <template>
+<div v-if="isLoaded">
+    <Navbar/>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">TwitchFlix</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/Top100">Top 100 Streams</router-link>
-                    </li>
-                    
-                </ul>
-            </div>
-        </nav>
-        <top-stream v-for="stream in streams" :key="stream.id" :streamData="stream"></top-stream>
-        
+      <div class="row">
+        <top-stream v-for="stream in topStreams" :key="stream.id" :streamData="stream"/>
+      </div>
     </div>
+</div>
+    
 </template>
 
 <script>
 import {mapActions} from 'vuex';
 import TwitchHelper from '../js/TwitchHelper';
 import TopStream from  './TopStream';
-
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 export default {
   name: 'Top100',
-  components: { TopStream },
+  components: { TopStream, Navbar, Footer },
   ...mapActions([
       'setTopStreams',
     ]),
-  data() {
-    return {
-      streams: [],
+  computed: {
+    isLoaded() {
+      return this.$store.state.streamsLoaded;
+    },
+    topStreams() {
+      return this.$store.state.streams;
     }
   },
-  convertThumbUrl(thumbUrl) {
-      let newThumb = thumbUrl;
-      newThumb.replace('{Width}', '200');
-      newThumb.replace('{Height}', '100');
-      return newThumb;
-  },
   created() {
-      if (this.$store.state.streams.length === 0) {
-          this.setTopStreams();
-      }
-      this.streams = this.$store.state.streams;
-      console.log('Hello');
-      console.log(this.streams);
+      this.$store.dispatch('setTopStreams');
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.streams = this.$store.state.streams;
+    });
+  }
 };
 </script>
 
 <style scoped>
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
 </style>
 
