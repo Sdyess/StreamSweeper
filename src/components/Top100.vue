@@ -6,13 +6,13 @@
       </div>
     </div>
 </div>
-    
+
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import { mapActions } from 'vuex';
 import TwitchHelper from '../js/TwitchHelper';
-import TopStream from  './TopStream';
+import TopStream from './TopStream';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
@@ -20,24 +20,24 @@ export default {
   name: 'Top100',
   components: { TopStream, Navbar, Footer },
   ...mapActions([
-      'setTopStreams',
-    ]),
+    'setTopStreams',
+  ]),
   computed: {
     isLoaded() {
       return this.$store.state.streamsLoaded;
     },
     topStreams() {
       return this.$store.state.streams;
-    }
+    },
   },
   created() {
-      this.$store.dispatch('setTopStreams');
+    this.$store.dispatch('setTopStreams');
   },
   mounted() {
     this.$nextTick(() => {
       this.streams = this.$store.state.streams;
     });
-  }
+  },
 };
 </script>
 

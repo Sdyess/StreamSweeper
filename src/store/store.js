@@ -17,10 +17,8 @@ const mutations = {
   addStream(state, listStream) {
     state.streams = listStream.streams;
     state.streamsLoaded = true;
-    console.log(state.streams);
   },
   selectStream(state, displayName) {
-    console.log(displayName);
     state.selectedStream = displayName;
     state.streamSelectedBool = true;
   },

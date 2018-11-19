@@ -2,16 +2,14 @@ const KrakenAPIServiceUrl = 'https://api.twitch.tv/kraken/';
 const HelixAPIServiceUrl = 'https://api.twitch.tv/helix/';
 
 const TwitchHelper = {
-  getRandomTwitchUser() {
-
+  async getLiveChannelCount() {
+    return this.fetchGet(`${KrakenAPIServiceUrl}streams/summary`);
   },
   async getMostActiveStreams() {
-    const response = await this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100`);
-    return response;
+    return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100`);
   },
   async getGameInfo(gameID) {
-    const response = await this.fetchGet(`${HelixAPIServiceUrl}games?id=${gameID}`);
-    return response;
+    return this.fetchGet(`${HelixAPIServiceUrl}games?id=${gameID}`);
   },
   async fetchGet(url) {
     const myHeaders = new Headers();

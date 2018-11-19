@@ -32,4 +32,8 @@ export default {
 #app {
   background-color: #6441A4;
 }
+.container-fluid {
+  padding-right:0;
+  padding-left:0;
+}
 </style>

@@ -1,13 +1,9 @@
 <template>
-    <div class="container">
-        <div v-if="isLoaded2" id="twitch-embed"></div>
-    </div>
-
+  <div id="twitch-embed"></div>
 </template>
 
 <script>
 import { mapActions, mapMutations } from 'vuex';
-import TwitchHelper from '../js/TwitchHelper';
 
 export default {
   name: 'Embed',
@@ -16,7 +12,6 @@ export default {
       'selectStream',
     ]),
     loadTwitch() {
-      console.log('Loading: ', this.$store.state.selectedStream);
       new Twitch.Embed('twitch-embed', {
         width: '100%',
         height: 600,
@@ -26,11 +21,6 @@ export default {
     getRandomStream() {
       const streams = this.$store.state.streams;
       return streams[Math.floor(Math.random() * streams.length)].channel.display_name;
-    },
-  },
-  computed: {
-    isLoaded2() {
-      return this.$store.state.streamSelectedBool;
     },
   },
   created() {
