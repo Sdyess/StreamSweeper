@@ -11,10 +11,9 @@
 
 <script>
 import { mapActions } from 'vuex';
-import TwitchHelper from '../js/TwitchHelper';
-import TopStream from './TopStream';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import TopStream from '../components/TopStream.vue';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'Top100',

@@ -4,7 +4,7 @@
       <Navbar/>
       <router-view/>
       <Footer/>
-    </div>
+</div>
   </div>
 </template>
 
@@ -12,7 +12,6 @@
 import {mapActions} from 'vuex';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
 export default {
   name: 'App',
   components: { Navbar, Footer },
@@ -25,7 +24,6 @@ export default {
     this.setTopStreams();
   },
 };
-
 </script>
 
 <style>

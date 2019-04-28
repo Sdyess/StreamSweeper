@@ -8,8 +8,8 @@
 
 <script>
 export default {
-    name: 'Footer',
-}
+  name: 'Footer',
+};
 </script>
 
 <style scoped>
@@ -23,5 +23,3 @@ export default {
     position:absolute;
   }
 </style>
-
-

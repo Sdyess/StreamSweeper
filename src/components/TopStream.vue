@@ -11,9 +11,9 @@
 
 <script>
 export default {
-    name: 'TopStream',
-    props: ['streamData'],
-}
+  name: 'TopStream',
+  props: ['streamData'],
+};
 </script>
 
 <style scoped>
@@ -24,4 +24,3 @@ export default {
 }
 
 </style>
-

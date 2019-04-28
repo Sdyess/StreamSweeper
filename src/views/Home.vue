@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Embed from './Embed';
+import Embed from '../components/Embed.vue';
 
 export default {
   name: 'Home',
@@ -71,4 +71,3 @@ body {
   margin-top: 20px;
 }
 </style>
-

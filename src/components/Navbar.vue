@@ -16,7 +16,7 @@
                     </li>
                     <li class="nav-item">
                         <router-link to="/Top" class="nav-link">Top 100 Streams</router-link>
-                    </li> 
+                    </li>
                 </ul>
             </div>
             </div>
@@ -26,10 +26,9 @@
 
 <script>
 export default {
-    name: 'Navbar',
-}
+  name: 'Navbar',
+};
 </script>
 
 <style scoped>
-    
 </style>
