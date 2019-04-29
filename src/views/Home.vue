@@ -2,7 +2,7 @@
     <div class="container">
       <div id="filterSection">
         <div class="row">
-            <select class="form-control col-md-3 mr-auto">
+            <select class="form-control col-md-3">
               <option value="en">English</option>
               <option value="es">Spanish</option>
               <option value="de">German</option>
@@ -23,9 +23,9 @@
               <option value="sk">Slovak</option>
               <option value="hu">Hungarian</option>
             </select>
-          <input type="search" class="form-control ml-auto col-md-4" placeholder="Game Title...">
+          <input type="search" class="form-control ml-auto col-md-3" placeholder="Game Title...">
+          <button type="button" class="btn btn-twitch ml-auto col-md-3"><span><i class="fas fa-sync fa-lg"></i> Random Stream</span></button>
         </div>
-
       </div>
       <div class="row" id="embedSection">
         <Embed class="col-md-12" v-if="isLoaded"/>
@@ -69,5 +69,11 @@ body {
 }
 #bottomSection {
   margin-top: 20px;
+}
+
+.btn-twitch {
+  background-color: #392e5c;
+  color: white;
+  border-color: #6441A4;
 }
 </style>

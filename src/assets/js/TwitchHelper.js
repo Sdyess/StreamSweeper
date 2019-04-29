@@ -11,6 +11,9 @@ const TwitchHelper = {
   async getGameInfo(gameID) {
     return this.fetchGet(`${HelixAPIServiceUrl}games?id=${gameID}`);
   },
+  async getGames(gameFilter) {
+    return this.fetchGet(`${KrakenAPIServiceUrl}search/games?query=${gameFilter}`);
+  },
   async fetchGet(url) {
     const myHeaders = new Headers();
     myHeaders.append('Client-ID', '7i0jdj0u0pbpr5h7x6p622vwm9ih4q');
