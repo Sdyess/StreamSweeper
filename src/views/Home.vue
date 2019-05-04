@@ -2,7 +2,7 @@
     <div class="container">
       <div id="filterSection">
         <div class="row">
-            <select class="form-control col-md-3">
+            <select class="form-control col-md-3" v-model="selectedLang">
               <option value="en">English</option>
               <option value="es">Spanish</option>
               <option value="de">German</option>
@@ -23,12 +23,12 @@
               <option value="sk">Slovak</option>
               <option value="hu">Hungarian</option>
             </select>
-          <input type="search" class="form-control ml-auto col-md-3" placeholder="Game Title...">
-          <button type="button" class="btn btn-twitch ml-auto col-md-3"><span><i class="fas fa-sync fa-lg"></i> Random Stream</span></button>
+          <input type="search" class="form-control ml-auto col-md-3" placeholder="Game Title..." v-on:keyup="loadGames()" v-model="gameInput">
+          <button type="button" class="btn btn-twitch ml-auto col-md-3" v-on:click="loadRandomStream()"><span><i class="fas fa-sync fa-lg"></i> Random Stream</span></button>
         </div>
       </div>
       <div class="row" id="embedSection">
-        <Embed class="col-md-12" v-if="isLoaded"/>
+        <Embed class="col-md-12" v-if="isLoaded" :lang="this.selectedLang"/>
       </div>
         <div class="row" id="bottomSection">
           <h5 class="col-md-5 mr-auto" style="color:white;">Under heavy development.</h5>
@@ -40,15 +40,39 @@
 
 <script>
 import Embed from '../components/Embed.vue';
+import {mapActions} from 'vuex';
 
 export default {
   name: 'Home',
   components: { Embed },
+  ...mapActions([
+    'setAvailableGames',
+  ]),
+  data() {
+    return {
+      selectedLang: 'en',
+      gameInput: '',
+    }
+  },
   computed: {
     isLoaded() {
       return this.$store.state.streamsLoaded;
     },
+    availableGames() {
+      return this.$store.state.availableGames;
+    }
   },
+  methods: {
+    loadRandomStream() {
+      console.log(this.selectedLang);
+    },
+    loadGames() {
+      if (this.gameInput.length > 3) {
+        this.$store.dispatch('setAvailableGames', this.gameInput);
+      }     
+    },
+  },
+
 };
 </script>
 

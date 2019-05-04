@@ -7,6 +7,7 @@ import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'Embed',
+  props: ['lang'],
   methods: {
     ...mapMutations([
       'selectStream',

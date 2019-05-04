@@ -8,11 +8,25 @@ const TwitchHelper = {
   async getMostActiveStreams() {
     return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100`);
   },
+  async getFilteredActiveStreams(lang, game) {
+    let setLang = ''
+    if (!lang) {
+      setLang = 'en';
+    } else {
+      setLang = lang;
+    }
+
+    if (game && game.length > 0) {
+      return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100&language=${setLang}&game=${game}`)
+    } else {
+      return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100&language=${setLang}`)
+    }  
+  },
   async getGameInfo(gameID) {
     return this.fetchGet(`${HelixAPIServiceUrl}games?id=${gameID}`);
   },
   async getGames(gameFilter) {
-    return this.fetchGet(`${KrakenAPIServiceUrl}search/games?query=${gameFilter}`);
+    return this.fetchGet(`${KrakenAPIServiceUrl}search/games?query=${gameFilter}&type=suggest`);
   },
   async fetchGet(url) {
     const myHeaders = new Headers();

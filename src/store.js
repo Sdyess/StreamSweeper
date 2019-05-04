@@ -10,11 +10,19 @@ export default new Vuex.Store({
     selectedStream: '',
     streamsLoaded: false,
     streamSelectedBool: false,
+    availableGames: [],
+    topStreams: [],
   },
   mutations: {
-    addStream(state, listStream) {
+    addStreams(state, listStream) {
       state.streams = listStream.streams;
       state.streamsLoaded = true;
+    },
+    addTopStreams(state, listStream) {
+      state.topStreams = listStream.streams;
+    },
+    addGame(state, listGames) {
+      state.availableGames = listGames.games;
     },
     selectStream(state, displayName) {
       state.selectedStream = displayName;
@@ -23,9 +31,17 @@ export default new Vuex.Store({
   },
   actions: {
     async setTopStreams(context) {
-      context.commit('addStream', await TwitchHelper.getMostActiveStreams());
+      context.commit('addTopStreams', await TwitchHelper.getMostActiveStreams());
       return Promise.resolve();
     },
+    async setFilteredStreams(context, lang, game) {
+      context.commit('addStreams', await TwitchHelper.getFilteredActiveStreams(lang, game));
+      return Promise.resolve();
+    },
+    async setAvailableGames(context, game) {
+      context.commit('addGame', await TwitchHelper.getGames(game));
+      return Promise.resolve();
+    }
   },
   getters: {
     allStreams: state => state.streams,

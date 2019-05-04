@@ -17,11 +17,11 @@ export default {
   components: { Navbar, Footer },
   methods: {
     ...mapActions([
-      'setTopStreams',
+      'setFilteredStreams',
     ]),
   },
   created() {
-    this.setTopStreams();
+    this.setFilteredStreams('en', '');
   },
 };
 </script>
