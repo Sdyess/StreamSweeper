@@ -8,4 +8,4 @@
 > Currently the web application is a minimal product. As in, it will just randomly serve you one of the top 100 streams currently playing right now. Feel free to browse the projects tab to see what's being planned.
 
 ### Running Locally
-> The project should be simple to setup and run locally. You can use yarn or npm, but it's more so setup for yarn. After downloading the source, all you need to do is run yarn serve.
+> The project should be simple to setup and run locally. You can use yarn or npm, but it's more so setup for yarn. After downloading the source, all you need to do is run yarn install & yarn serve.
