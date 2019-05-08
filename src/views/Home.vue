@@ -24,7 +24,9 @@
               <option value="hu">Hungarian</option>
             </select>
           <input type="search" class="form-control ml-auto col-md-3" placeholder="Game Title..." v-on:keyup="loadGames()" v-model="gameInput">
-          <button type="button" class="btn btn-twitch ml-auto col-md-3" v-on:click="loadRandomStream()"><span><i class="fas fa-sync fa-lg"></i> Random Stream</span></button>
+          <button type="button" class="btn btn-twitch ml-auto col-md-3" v-on:click="loadRandomStream()">
+            <span><i class="fas fa-sync fa-lg"></i> Random Stream</span>
+          </button>
         </div>
       </div>
       <div class="row" id="embedSection">
@@ -39,8 +41,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Embed from '../components/Embed.vue';
-import {mapActions} from 'vuex';
 
 export default {
   name: 'Home',
@@ -52,7 +54,7 @@ export default {
     return {
       selectedLang: 'en',
       gameInput: '',
-    }
+    };
   },
   computed: {
     isLoaded() {
@@ -60,7 +62,7 @@ export default {
     },
     availableGames() {
       return this.$store.state.availableGames;
-    }
+    },
   },
   methods: {
     loadRandomStream() {
@@ -69,7 +71,7 @@ export default {
     loadGames() {
       if (this.gameInput.length > 3) {
         this.$store.dispatch('setAvailableGames', this.gameInput);
-      }     
+      }
     },
   },
 

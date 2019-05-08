@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { mapActions } from 'vuex';
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
+
 export default {
   name: 'App',
   components: { Navbar, Footer },

@@ -9,7 +9,7 @@ const TwitchHelper = {
     return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100`);
   },
   async getFilteredActiveStreams(lang, game) {
-    let setLang = ''
+    let setLang = '';
     if (!lang) {
       setLang = 'en';
     } else {
@@ -17,10 +17,9 @@ const TwitchHelper = {
     }
 
     if (game && game.length > 0) {
-      return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100&language=${setLang}&game=${game}`)
-    } else {
-      return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100&language=${setLang}`)
-    }  
+      return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100&language=${setLang}&game=${game}`);
+    }
+    return this.fetchGet(`${KrakenAPIServiceUrl}streams/?limit=100&language=${setLang}`);
   },
   async getGameInfo(gameID) {
     return this.fetchGet(`${HelixAPIServiceUrl}games?id=${gameID}`);

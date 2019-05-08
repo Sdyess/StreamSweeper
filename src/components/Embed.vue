@@ -13,7 +13,7 @@ export default {
       'selectStream',
     ]),
     loadTwitch() {
-      new Twitch.Embed('twitch-embed', {
+      new Twitch.Embed('twitch-embed', { // eslint-disable-line
         width: '100%',
         height: 600,
         channel: this.$store.state.selectedStream,

@@ -41,7 +41,7 @@ export default new Vuex.Store({
     async setAvailableGames(context, game) {
       context.commit('addGame', await TwitchHelper.getGames(game));
       return Promise.resolve();
-    }
+    },
   },
   getters: {
     allStreams: state => state.streams,
