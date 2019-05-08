@@ -28,7 +28,7 @@ export default {
       }
     },
     getRandomStream() {
-      const streams = this.$store.state.streams;
+      const streams = this.$store.state.streams; // eslint-disable-line prefer-destructuring
       return streams[Math.floor(Math.random() * streams.length)].channel.display_name;
     },
   },

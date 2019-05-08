@@ -10,8 +10,8 @@
 
 <script>
 import { mapActions } from 'vuex';
-import Navbar from './components/Navbar.vue';
-import Footer from './components/Footer.vue';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 export default {
   name: 'App',
