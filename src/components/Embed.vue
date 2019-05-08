@@ -1,5 +1,13 @@
 <template>
-  <div id="twitch-embed"></div>
+  <iframe
+    id="twitch-frame"
+    src=""
+    height="720"
+    width="1280"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true">
+  </iframe>
 </template>
 
 <script>
@@ -13,11 +21,11 @@ export default {
       'selectStream',
     ]),
     loadTwitch() {
-      new Twitch.Embed('twitch-embed', { // eslint-disable-line
-        width: '100%',
-        height: 600,
-        channel: this.$store.state.selectedStream,
-      });
+      const iframe = document.getElementById('twitch-frame');
+      if (iframe) {
+        const channel = this.$store.state.selectedStream;
+        iframe.src = `https://player.twitch.tv/?channel=${channel}`;
+      }
     },
     getRandomStream() {
       const streams = this.$store.state.streams;
