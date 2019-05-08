@@ -2,6 +2,7 @@
     <footer class="footer">
       <div class="container">
         <span>TwitchFlix 2019</span>
+        <span style="float:right;"><i class="fab fa-vuejs fa-lg"></i> Built with VueJS</span>
       </div>
     </footer>
 </template>

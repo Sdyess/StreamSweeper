@@ -11,7 +11,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import TopStream from '../components/TopStream.vue';
+import TopStream from '../components/TopStream';
 
 export default {
   name: 'Top100',

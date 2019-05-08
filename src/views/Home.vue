@@ -32,17 +32,21 @@
       <div class="row" id="embedSection">
         <Embed class="col-md-12" v-if="isLoaded" :lang="this.selectedLang"/>
       </div>
-        <div class="row" id="bottomSection">
-          <h5 class="col-md-5 mr-auto" style="color:white;">Under heavy development.</h5>
-          <h5 class ="col-md-5 ml-auto" style="color:white;text-align:right;">Built in VueJS</h5>
+        <div id="bottomSection">
+          <button type="button" class="btn btn-twitch ml-auto" disabled>
+              <span><i class="fas fa-heart fa-lg"></i> Follow</span>
+          </button>
+          <button type="button" class="btn btn-twitch" disabled>
+              <span><i class="fas fa-star fa-lg"></i> Subscribe</span>
+          </button>
         </div>
-
+        <br>
     </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import Embed from '../components/Embed.vue';
+import Embed from '../components/Embed';
 
 export default {
   name: 'Home',
