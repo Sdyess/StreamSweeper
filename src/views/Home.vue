@@ -23,14 +23,16 @@
               <option value="sk">Slovak</option>
               <option value="hu">Hungarian</option>
             </select>
-          <input type="search" class="form-control ml-auto col-md-3" placeholder="Game Title..." v-on:keyup="loadGames()" v-model="gameInput">
+            <input type="search" id="gameSearch" autocomplete="off" class="form-control ml-auto col-md-3" placeholder="Game Title..." v-on:keyup="loadGames()" v-model="gameInput" list="gameList">
+            <datalist id="gameList">
+            </datalist>
           <button type="button" class="btn btn-twitch ml-auto col-md-3" v-on:click="loadRandomStream()">
             <span><i class="fas fa-sync fa-lg"></i> Random Stream</span>
           </button>
         </div>
       </div>
       <div class="row" id="embedSection">
-        <Embed class="col-md-12" v-if="isLoaded" :lang="this.selectedLang"/>
+        <Embed class="col-md-12" v-if="isLoaded" :lang="this.selectedLang" :game="this.gameInput"/>
       </div>
         <div id="bottomSection">
           <button type="button" class="btn btn-twitch ml-auto" disabled>
@@ -53,6 +55,7 @@ export default {
   components: { Embed },
   ...mapActions([
     'setAvailableGames',
+    'setFilteredStreams',
   ]),
   data() {
     return {
@@ -70,11 +73,31 @@ export default {
   },
   methods: {
     loadRandomStream() {
-      console.log(this.selectedLang);
+      this.$store.state.streamsLoaded = false;
+      const payload = {
+        game: this.gameInput,
+        lang: this.selectedLang,
+      };
+      this.$store.dispatch('setFilteredStreams', payload);
+      this.$emit('update');
     },
     loadGames() {
       if (this.gameInput.length > 3) {
         this.$store.dispatch('setAvailableGames', this.gameInput);
+        console.log(this.availableGames);
+        const gameList = document.getElementById('gameList');
+        if (gameList) {
+          let optionString = '';
+          this.availableGames.forEach((element) => {
+            optionString += `<option value="${element.name}"/>`;
+          });
+
+          gameList.innerHTML = optionString;
+          const gameInput = document.getElementById('gameSearch');
+          if (gameInput) {
+            gameInput.focus();
+          }
+        }
       }
     },
   },

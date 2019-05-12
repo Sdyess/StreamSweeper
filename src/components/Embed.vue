@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from 'vuex';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'Embed',
-  props: ['lang'],
+  props: ['lang', 'game'],
   methods: {
     ...mapMutations([
       'selectStream',
@@ -31,9 +31,14 @@ export default {
       const streams = this.$store.state.streams; // eslint-disable-line prefer-destructuring
       return streams[Math.floor(Math.random() * streams.length)].channel.display_name;
     },
+    reloadStream() {
+      this.$store.commit('selectStream', this.getRandomStream());
+      this.loadTwitch();
+    },
   },
   created() {
     this.$store.commit('selectStream', this.getRandomStream());
+    this.$parent.$on('update', this.reloadStream);
   },
   mounted() {
     this.$nextTick(() => {

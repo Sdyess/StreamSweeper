@@ -34,8 +34,8 @@ export default new Vuex.Store({
       context.commit('addTopStreams', await TwitchHelper.getMostActiveStreams());
       return Promise.resolve();
     },
-    async setFilteredStreams(context, lang, game) {
-      context.commit('addStreams', await TwitchHelper.getFilteredActiveStreams(lang, game));
+    async setFilteredStreams(context, payload) {
+      context.commit('addStreams', await TwitchHelper.getFilteredActiveStreams(payload.lang, payload.game));
       return Promise.resolve();
     },
     async setAvailableGames(context, game) {
