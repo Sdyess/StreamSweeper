@@ -24,7 +24,7 @@ export default {
       return this.$store.state.streamsLoaded;
     },
     topStreams() {
-      return this.$store.state.streams;
+      return this.$store.state.topStreams;
     },
   },
   created() {
