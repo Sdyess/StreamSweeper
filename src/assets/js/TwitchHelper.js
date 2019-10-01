@@ -30,7 +30,8 @@ const TwitchHelper = {
   async fetchGet(url) {
     const myHeaders = new Headers();
     myHeaders.append('Client-ID', '7i0jdj0u0pbpr5h7x6p622vwm9ih4q');
-
+    myHeaders.append('Accept', 'application/vnd.twitchtv.v5+json');
+    
     const options = {
       method: 'GET',
       headers: myHeaders,
