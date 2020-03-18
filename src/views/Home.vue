@@ -34,14 +34,6 @@
       <div class="row" id="embedSection">
         <Embed class="col-md-12" v-if="isLoaded" :lang="this.selectedLang" :game="this.gameInput"/>
       </div>
-        <div id="bottomSection">
-          <button type="button" class="btn btn-twitch ml-auto" disabled>
-              <span><i class="fas fa-heart fa-lg"></i> Follow</span>
-          </button>
-          <button type="button" class="btn btn-twitch" disabled>
-              <span><i class="fas fa-star fa-lg"></i> Subscribe</span>
-          </button>
-        </div>
         <br>
     </div>
 </template>
