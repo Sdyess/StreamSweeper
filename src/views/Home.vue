@@ -76,7 +76,6 @@ export default {
     loadGames() {
       if (this.gameInput.length > 3) {
         this.$store.dispatch('setAvailableGames', this.gameInput);
-        console.log(this.availableGames);
         const gameList = document.getElementById('gameList');
         if (gameList) {
           let optionString = '';
