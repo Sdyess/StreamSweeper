@@ -24,7 +24,7 @@ export default {
       const iframe = document.getElementById('twitch-frame');
       if (iframe) {
         const channel = this.$store.state.selectedStream;
-        iframe.src = `https://player.twitch.tv/?channel=${channel}`;
+        iframe.src = `https://player.twitch.tv/?channel=${channel}&parent=twitchflix.net`;
       }
     },
     getRandomStream() {
